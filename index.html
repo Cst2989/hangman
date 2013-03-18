@@ -1,0 +1,40 @@
+<html>
+<head>
+</head>
+<body>
+<div id="body"></div>
+
+
+<script>
+var canvas=null;
+var ctx=null;
+var hangmanImg = [];
+var frames=[];
+var frameNo=0;
+var onImageLoad = function(){
+    console.log("IMAGE!!!");
+};
+var setup = function() {
+    body = document.getElementById('body');
+    canvas = document.createElement('canvas');
+var GameOver= False;
+    ctx = canvas.getContext('2d');
+    
+    canvas.width = 100;
+    canvas.height = 100;
+
+    body.appendChild(canvas);
+	for (var i=0; i<assets.length; i++) {
+        frames[i] = new Image();
+        frames[i].onload = onImageLoad;
+        frames[i].src = assets[i];
+    }
+	do{
+	
+	ctx.drawImage(frames[frameNo],0,0);
+	
+	}while(GameOver==False);
+
+</script>
+</body>
+</html>

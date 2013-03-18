@@ -1,0 +1,22 @@
+<html>
+<head></head>
+<body>
+<div id="container"><p></p></div>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+
+
+
+var test1 = ["elon","heiii","foo","sloboz","hello","dont go","salut","jinjin","bar","nimic","jesus","alsharai","gayyy","dont go love a","real madrid","steaua","chelsea","united","heroes","how i","dalas","miami"];
+
+var randomnumber=Math.floor(Math.random()*test1.length)
+    console.log(test1[randomnumber],randomnumber);
+	
+	var test2=test1[randomnumber];
+	var x="";
+	for(var i=0;i<test2.length;i++){
+	x=x+" _";};
+	$("#container > p").append(x);
+	console.log(x);
+</script>
+</body>
