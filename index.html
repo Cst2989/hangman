@@ -1,40 +1,136 @@
 <html>
 <head>
+<title>Hang Man!</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
 </head>
 <body>
-<div id="body"></div>
-
-
+<div id="body">
+</div><div id="word" class="classname"><p></p></div><div id="message"></div>
+<div id="keyboard"><div id="letterQ" class="classname">Q</div><div id="letterW" class="classname">W</div><div id="letterE" class="classname">E</div><div id="letterR" class="classname" >R</div><div id="letterT" class="classname" >T</div><div id="letterY" class="classname" >Y</div><div id="letterU" class="classname" >U</div><div id="letterI" class="classname">I</div><div id="letterO" class="classname">O</div><div id="letterP" class="classname">P</div></br><div id="letterA" class="classname">A</div><div id="letterS" class="classname">S</div><div id="letterD" class="classname">D</div><div id="letterF" class="classname">F</div><div id="letterG" class="classname">G</div><div id="letterH" class="classname">H</div><div id="letterJ" class="classname">J</div><div id="letterK" class="classname">K</div><div id="letterL" class="classname">L</div></br><div id="letterZ" class="classname">Z</div><div id="letterX" class="classname">X</div><div id="letterC" class="classname">C</div><div id="letterV" class="classname">V</div><div id="letterB" class="classname">B</div><div id="letterN" class="classname">N</div><div id="letterM" class="classname">M</div></div>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script>
-var canvas=null;
-var ctx=null;
-var hangmanImg = [];
-var frames=[];
-var frameNo=0;
+$(document).ready(function(){
 var onImageLoad = function(){
     console.log("IMAGE!!!");
 };
+$("div[id=letter]").css("float","left");
+
+
+
+var words = ["elon","heiii","foo","sloboz","hello","dont go","salut","jinjin","bar","nimic","jesus","alsharai","gayyy","dont go love a","real madrid","steaua","chelsea","united","heroes","how i","dalas","miami"];
+//add a more complete word dictionary ;
+//add two more dictionaries for different levels;
+var randomnumber=Math.floor(Math.random()*words.length)
+    
+function setCharAt(str,index,chr) {
+    if(index > str.length-1) return str;
+    return str.substr(0,index) + chr + str.substr(index+1);
+}
+var slctWord=words[randomnumber];
+slctWord=slctWord.toUpperCase();
+var x="";
+var cssObj = {      
+      'font-weight' : '',
+      'color' : 'green'
+    };
+var cssObj2 = {
+      
+      'font-weight' : '',
+      'color' : 'red'
+    };
+for(var i=0;i<slctWord.length;i++){
+	x=x+" _";};
+var try2;
+var nrTries=5;
+var GameWon=false;
+$("#word >p").append(x); //Change font-size and stile for #word and #message 
+canvas = document.createElement('canvas');
+ctx2 = canvas.getContext('2d');
+canvas.width = 548;
+canvas.height = 406;
+body.appendChild(canvas);
+$('canvas').addClass("image");
+var img=new Image();
+img.src = 'hangman0.jpg';
+img.onload = function(){
+    ctx2.drawImage(img,0,0);
+	};
+	
+$(".classname").click(function(){ 
+    try2=$(this).text();
+    var found=false;
+    for(var j=0;j<x.length;j++){
+        if(try2==slctWord[j]){
+        x = setCharAt(x,2*j+1,try2); 
+        found=true;}
+		}
+    if(found==true){
+     $(this).css(cssObj);
+    }
+    if(found==false){
+     $(this).css(cssObj2);
+     nrTries=nrTries-1;
+    } 
+    if(nrTries==-1){
+     $("#keyboard").fadeOut("fast");
+    // $("#word").fadeOut("fast");
+     $("#word").text("THE ANSWER WAS : "+ slctWord); //insert </br>
+    }
+    setup();               
+    $("#word >p ").text(x);
+
+/*
+$("#keyboard").fadeOut("slow");
+$("#word").fadeOut("slow");
+$("#message").text("YOU WON!"); Rezolve the You won issue!
+}
+*/
+	});
 var setup = function() {
     body = document.getElementById('body');
     canvas = document.createElement('canvas');
-var GameOver= False;
     ctx = canvas.getContext('2d');
     
-    canvas.width = 100;
-    canvas.height = 100;
+	
+	
+    canvas.width = 548;
+    canvas.height = 406;
 
     body.appendChild(canvas);
-	for (var i=0; i<assets.length; i++) {
-        frames[i] = new Image();
-        frames[i].onload = onImageLoad;
-        frames[i].src = assets[i];
-    }
-	do{
+	$('canvas').addClass("image");
+	var img=new Image();
+	switch(nrTries){
+	case 5:
+	img.src = 'hangman0.jpg';
+	break;
+	case 4:
+	img.src = 'hangman1.jpg';
+	break;
+	case 3:
+	img.src = 'hangman2.jpg';
+	break;
+	case 2:
+	img.src = 'hangman3.jpg';
+	break;
+	case 1:
+	img.src = 'hangman4.jpg';
+	break;
+	case 0:
+	img.src = 'hangman5.jpg';
+	break;
+	default:
+	img.src = 'hangman6.jpg';
 	
-	ctx.drawImage(frames[frameNo],0,0);
+	}
+    
+	img.onload = function(){
+    ctx.drawImage(img,0,0);
+	};
+	};
 	
-	}while(GameOver==False);
-
-</script>
+	});
+	</script>
+	
 </body>
+
 </html>

@@ -1,3 +1,25 @@
+#message{
+position:absolute;
+top:14%;
+left:65%;
+color:red;
+font-family:Arial;
+	font-size:36px;
+	font-weight:bold;
+}
+
+
+#letterA{   margin-left:15px;
+            
+			
+           
+			}
+#letterZ{
+            margin-left:35px;
+			
+			}
+
+
 #keyboard {
             position: absolute;
             width: 700px;
@@ -8,16 +30,13 @@
             margin-top: -50px; /* Negative half of height. */
             
         }
-#row2{
-     position:absolute;
-	 left:2%;
-	 top:25%;
-	 }
-#row3{
-     position:absolute;
-	 left:5%;
-	 top:50%;
-	 }
+
+#word{
+      position:absolute;
+	  top:7%;
+	  left:65%;
+	  font-size:300%;
+	  }
 .image{
      position:absolute;
 	 top:0%;
